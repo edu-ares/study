@@ -1,25 +1,29 @@
-import sys, random
+"""Generate funny names by randomly combining names from 2 separate lists."""
+import sys
+import random
 
-print("\nWelcome to the Psych 'Sidekick Name Picker.'\n")
-print("A name just like Sean would pick for Gus:\n")
+def main():
+    """Generate funny names by randomly combining names from 2 separate lists."""
+    print("\nWelcome to the Psych 'Sidekick Name Picker.'\n")
+    print("A name just like Sean would pick for Gus:\n")
 
-first = ('Baby Oil', 'Bad News', 'Big Burps', "Bill 'Beenie-Weenie'",
-         "Bob 'Stinkbug'", 'Bowel Noises', 'Boxelder', "Bud 'Lite'",
-         'Butterbean', 'Buttermilk', 'Buttocks', 'Chad', 'Chesterfield',
-         'Chewy', 'Chigger', 'Cinnabuns', 'Cleet', 'Cornbread', 'Crab Meat',
-         'Crapps', 'Dark Skies', 'Dennis Clawhammer', 'Dicman', 'Elphonso',
-         'Fancypants', 'Figgs', 'Foncy', 'Gootsy', 'Greasy Jim', 'Huckleberry',
-         'Huggy', 'Ignatious', 'Jimbo', "Joe 'Pottin Soil'", 'Johnny',
-         'Lemongrass', 'Lil Debil', 'Longbranch', '"Lunch Money"', 'Mergatroid',
-         '"Mr Peabody"', 'Oil-Can', 'Oinks', 'Old Scratch', 'Ovaltine',
-         'Pennywhistle', 'Pitchfork Ben', 'Potato Bug', 'Pushmeet',
-         'Rock Candy', 'Schlomo', 'Scratchensniff', 'Scut',
-         "Sid 'The Squirts'", 'Skidmark', 'Slaps', 'Snakes', 'Snoobs',
-         'Snorki', 'Soupcan Sam', 'Spitzitout', 'Squids', 'Stinky',
-         'Storyboard', 'Sweet Tea', 'TeeTee', 'Wheezy Joe',
-         "Winston 'Jazz Hands'", 'Worms')
+    first = ('Baby Oil', 'Bad News', 'Big Burps', "Bill 'Beenie-Weenie'",
+        "Bob 'Stinkbug'", 'Bowel Noises', 'Boxelder', "Bud 'Lite'",
+        'Butterbean', 'Buttermilk', 'Buttocks', 'Chad', 'Chesterfield',
+        'Chewy', 'Chigger', 'Cinnabuns', 'Cleet', 'Cornbread', 'Crab Meat',
+        'Crapps', 'Dark Skies', 'Dennis Clawhammer', 'Dicman', 'Elphonso',
+        'Fancypants', 'Figgs', 'Foncy', 'Gootsy', 'Greasy Jim', 'Huckleberry',
+        'Huggy', 'Ignatious', 'Jimbo', "Joe 'Pottin Soil'", 'Johnny',
+        'Lemongrass', 'Lil Debil', 'Longbranch', '"Lunch Money"', 'Mergatroid',
+        '"Mr Peabody"', 'Oil-Can', 'Oinks', 'Old Scratch', 'Ovaltine',
+        'Pennywhistle', 'Pitchfork Ben', 'Potato Bug', 'Pushmeet',
+        'Rock Candy', 'Schlomo', 'Scratchensniff', 'Scut',
+        "Sid 'The Squirts'", 'Skidmark', 'Slaps', 'Snakes', 'Snoobs',
+        'Snorki', 'Soupcan Sam', 'Spitzitout', 'Squids', 'Stinky',
+        'Storyboard', 'Sweet Tea', 'TeeTee', 'Wheezy Joe',
+        "Winston 'Jazz Hands'", 'Worms')
 
-last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
+    last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
         'Breedslovetrout', 'Butterbaugh', 'Clovenhoof', 'Clutterbuck',
         'Cocktoasten', 'Endicott', 'Fewhairs', 'Gooberdapple', 'Goodensmith',
         'Goodpasture', 'Guster', 'Henderson', 'Hooperbag', 'Hoosenater',
@@ -34,14 +38,17 @@ last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
         'Weiners', 'Whipkey', 'Wigglesworth', 'Wimplesnatch', 'Winterkorn',
         'Woolysocks')
 
-while True:
-    firstName = random.choice(first)
-    lastName = random.choice(last)
+    while True:
+        first_name = random.choice(first)
+        last_name = random.choice(last)
 
-    print(f"{firstName} {lastName} \n", file=sys.stderr)
+        print(f"{first_name} {last_name} \n", file=sys.stderr)
 
-    try_again = input("Try again? (Type 'no' to quit)\n")
-    if try_again.lower() == "no":
-        break
+        try_again = input("Try again? (Type 'no' to quit)\n")
+        if try_again.lower() == "no":
+            break
 
-print("Goodbye!")
+    print("Goodbye!")
+
+if __name__ == "__main__":
+    main()
