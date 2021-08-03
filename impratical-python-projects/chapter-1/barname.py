@@ -1,18 +1,14 @@
+"""Make a bar chart of the letters of an input, each letter being a unit of the bar."""
 import pprint
+from collections import defaultdict
 
 alphabet = list('abcdefghijklmnopqrstuvwyz')
-bar_dict = {}
+bar_dict = defaultdict(list)
 
 sentence = input("Write a sentence to be divided in letters.\n>").lower()
-sentence_splited = list(sentence)
 
-for letter in alphabet:
-    bar = []
-    n_of_times = sentence_splited.count(letter)
-    while n_of_times > 0:
-        bar.append(letter)
-        n_of_times = n_of_times -1
-    if bar != []:
-        bar_dict[letter] = bar
-
-pprint.pprint(bar_dict)
+#optimized thanks to an anonymous suggestion
+for letter in sentence:
+    if letter.isalpha():
+        bar_dict[letter].append(letter)
+pprint.pprint(bar_dict, width=110)
