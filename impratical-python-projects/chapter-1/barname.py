@@ -12,3 +12,11 @@ for letter in sentence:
     if letter.isalpha():
         bar_dict[letter].append(letter)
 pprint.pprint(bar_dict, width=110)
+
+# Another suggestion from the person that helped was to use Counter to solve the problem
+# from collections import Counter
+# import string
+# counts = Counter(input().upper())
+# for letter in string.ascii_uppercase:
+#     if counts[letter]:
+#         print(letter * counts[letter])
