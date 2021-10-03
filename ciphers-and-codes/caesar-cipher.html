@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Cipher</title>
+    <style>
+        body{text-align:center;background-color:#353643;color:#EFE7BC;}
+        h1{color:#74BDCB;}
+        label,textarea,p{font-size:1.2rem;letter-spacing:1px;}
+        textarea{padding:10px;max-width:100%;line-height:1.5;border-radius:5px;border:2px solid #EFE7BC;box-shadow: 1px 1px 1px #FFA384;}
+        label{display:block;margin-bottom:10px;}
+        .txtOut{color: #FFA384;}
+        button{background: none; color: #EFE7BC; border: solid 1px; padding: 1em 2em;font-size: 1em;}
+        button:hover{color: #FFA384;}button:active{color: #74BDCB;}
+        textarea:focus{border:2px solid #FFA384}
+    </style>
+</head>
+<body>
+    <h1>Reverse a string using JavaScript</h1>
+    <div>
+        <label for="textIn">Write the text you want to be encrypted:</label>
+        <textarea id="txtIn" name="textIn" rows="5" cols="33"></textarea><br>
+    </div>
+    <div><br>
+        <button id="submit">Encrypt</button>
+        <br>
+    </div>
+    <div><p>Result:</p>
+        <p id="txtOut"></p>
+    </div>
+    <script>
+        let alphabet = "abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ0123456789";
+        let key = 3;
+        encryptedTxt = [];
+
+        function caesarEncrypt() {
+            document.getElementById("txtOut").innerHTML = "";
+            let txtIn = document.getElementById("txtIn").value.split("");
+            for (let i = 0; i < txtIn.length; i++) {
+                let oldIndex = alphabet.search([i]);
+                let newIndex = oldIndex + key;
+                let letter = alphabet.charAt(newIndex);
+                encryptedTxt.push(letter);
+            }
+            document.getElementById("txtOut").innerHTML = encryptedTxt.join("");
+        }
+        document.getElementById("submit").addEventListener("click", caesarEncrypt);
+    </script>
+</body>
+</html>
