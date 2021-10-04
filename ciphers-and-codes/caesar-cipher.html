@@ -31,20 +31,18 @@
         <p id="txtOut"></p>
     </div>
     <script>
-        let alphabet = "abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ0123456789";
-        let key = 3;
-        encryptedTxt = [];
-
         function caesarEncrypt() {
-            document.getElementById("txtOut").innerHTML = "";
-            let txtIn = document.getElementById("txtIn").value.split("");
-            for (let i = 0; i < txtIn.length; i++) {
-                let oldIndex = alphabet.search([i]);
+            let alphabet = "abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ0123456789";
+            let key = 3;
+            let encryptedTxt = "";
+            let txtIn = document.getElementById("txtIn").value.split();
+            for (let i = txtIn.length; i >= 0 ; i--) {
+                let oldIndex = alphabet.search(txtIn[i]);
                 let newIndex = oldIndex + key;
-                let letter = alphabet.charAt(newIndex);
-                encryptedTxt.push(letter);
+                let letter = alphabet[newIndex];
+                let encryptedTxt = encryptedTxt + letter;
             }
-            document.getElementById("txtOut").innerHTML = encryptedTxt.join("");
+            document.getElementById("txtOut").innerHTML = encryptedTxt.join();
         }
         document.getElementById("submit").addEventListener("click", caesarEncrypt);
     </script>
