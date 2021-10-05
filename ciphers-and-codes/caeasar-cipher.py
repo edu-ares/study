@@ -1,60 +1,71 @@
-"""Extended Caeser Cipher"""
+
+"""Extended Caesar Cipher"""
 import string
 
-#extended list of symbols, instead of using the usual 25 letters
-symbols = string.ascii_letters + string.digits + string.punctuation + " "
-txtIn = input("Type the message you want to cipher or decipher:\n")
-txtOut = ""
+def main():
+    global symbols
+    global txt_in
+    #extended list of symbols that will be used to cipher the text
+    symbols = string.ascii_letters + string.digits + string.punctuation + " "
+    #get the plaintext from the user
+    txt_in = input("Type the message you want to cipher or decipher:\n")
+    #ciphertext output
+    cipher_or_decipher()
 
 def get_key():
-    get_key.key = input("Key: ")
-    while get_key.key.isnumeric() == False:
-        get_key.key = input("Input a valid number: ")
-    get_key.key = int(get_key.key)
+    #get key from user input
+    key = input("Key: ")
+    #checks if it is a valid input
+    while key.isnumeric() is False:
+        key = input("Input a valid number: ")
+    key = int(key)
+    #loop back to the symbol list if key + letter is too big
+    if len(symbols) + key > len(symbols):
+        key = key % len(symbols)
+    return key
 
-def encrypt(txtIn, txtOut):
-    get_key()
-    for letter in txtIn:
-        oldIndex = symbols.find(letter)
-        newIndex = oldIndex + get_key.key
-        #check if the key is bigger than the symbols list
-        if abs(newIndex) > len(symbols):
-            newIndex = newIndex % len(symbols)
-        txtOut = txtOut + symbols[newIndex]
-    print(txtOut)
+def cipher(plaintext):
+    ciphertext = ""
+    key = get_key()
+    for letter in plaintext:
+        old_index = symbols.find(letter)
+        new_index = old_index + key
+        ciphertext = ciphertext + symbols[new_index]
+    return ciphertext
 
-def decrypt(txtIn, txtOut):
-    get_key()
-    for letter in txtIn:
-        oldIndex = symbols.find(letter)
-        newIndex = oldIndex - get_key.key
-        #check if the key is bigger than the symbols list
-        if abs(newIndex) > len(symbols):
-            newIndex = newIndex % len(symbols)
-        txtOut = txtOut + symbols[newIndex]
-    print(txtOut)
+def decipher(plaintext):
+    ciphertext = ""
+    key = get_key()
+    for letter in plaintext:
+        old_index = symbols.find(letter)
+        new_index = old_index - key
+        ciphertext = ciphertext + symbols[new_index]
+    return ciphertext
 
-def brute_force(txtIn, txtOut):
+def brute_force(plaintext):
+    ciphertext = ""
     for key in range(len(symbols)):
-        txtOut = ""
-        for letter in txtIn:
-            oldIndex = symbols.find(letter)
-            newIndex = oldIndex - key
-            txtOut = txtOut + symbols[newIndex]
-        print(f"Key #{key}: {txtOut}")
+        ciphertext = ""
+        for letter in plaintext:
+            old_index = symbols.find(letter)
+            new_index = old_index - key
+            ciphertext = ciphertext + symbols[new_index]
+        print(f"Key #{key}: {ciphertext}")
 
-def encryption_or_decryption():
-    en_de = input("(e)ncryption or (d)ecryption: ")
-    if en_de == "e":
-        encrypt(txtIn, txtOut)
-    elif en_de == "d":
+def cipher_or_decipher():
+    ci_de = input("(c)ipher or (d)ecipher: ")
+    if ci_de == "c":
+        print(cipher(txt_in))
+    elif ci_de == "d":
         bf_or_key = input("Using the (k)ey or (b)rute force?: ")
         if bf_or_key == "k":
-            decrypt(txtIn, txtOut)
+            print(decipher(txt_in))
         elif bf_or_key == "b":
-            brute_force(txtIn, txtOut)
+            brute_force(txt_in)
     else:
         print("Choose a valid option.")
-        encryption_or_decryption()
+        cipher_or_decipher()
 
-encryption_or_decryption()
+if __name__ == "__main__":
+    main()
+    
