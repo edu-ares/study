@@ -5,21 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reverse Cipher</title>
-    <style>
-        body{text-align:center;background-color:#353643;color:#EFE7BC;}
-        h1{color:#74BDCB;}
-        label,textarea,p{font-size:1.2rem;letter-spacing:1px;}
-        textarea{padding:10px;max-width:100%;line-height:1.5;border-radius:5px;border:2px solid #EFE7BC;box-shadow: 1px 1px 1px #FFA384;}
-        label{display:block;margin-bottom:10px;}
-        .txtOut{color: #FFA384;}
-        button{background: none; color: #EFE7BC; border: solid 1px; padding: 1em 2em;font-size: 1em;}
-        button:hover{color: #FFA384;}button:active{color: #74BDCB;}
-        textarea:focus{border:2px solid #FFA384}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Reverse a string using JavaScript</h1>
+    <h1>Caesar Cipher</h1>
     <div>
+        <label for="keyIn">Write the key for encryption:</label>
+        <input type="number" id="keyIn" name="keyIn"></input><br>
+
         <label for="textIn">Write the text you want to be encrypted:</label>
         <textarea id="txtIn" name="textIn" rows="5" cols="33"></textarea><br>
     </div>
@@ -32,17 +25,17 @@
     </div>
     <script>
         function caesarEncrypt() {
-            let alphabet = "abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ0123456789";
-            let key = 3;
+            let symbols = "abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ0123456789";
+            let key = parseInt(document.getElementById("keyIn").value);
             let encryptedTxt = "";
-            let txtIn = document.getElementById("txtIn").value.split();
-            for (let i = txtIn.length; i >= 0 ; i--) {
-                let oldIndex = alphabet.search(txtIn[i]);
-                let newIndex = oldIndex + key;
-                let letter = alphabet[newIndex];
-                let encryptedTxt = encryptedTxt + letter;
-            }
-            document.getElementById("txtOut").innerHTML = encryptedTxt.join();
+            let txtIn = document.getElementById("txtIn").value.split("");
+            txtIn.forEach(letter => {
+                indexold = symbols.indexOf(letter);
+                indexnew = indexold + key;
+                translatedLetter = symbols.charAt(indexnew);
+                encryptedTxt = encryptedTxt + translatedLetter;
+            });
+            document.getElementById("txtOut").innerHTML = encryptedTxt;
         }
         document.getElementById("submit").addEventListener("click", caesarEncrypt);
     </script>

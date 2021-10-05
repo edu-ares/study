@@ -3,7 +3,7 @@ import string
 
 #extended list of symbols, instead of using the usual 25 letters
 symbols = string.ascii_letters + string.digits + string.punctuation + " "
-txtIn = input("Type the message you want to encrypt:\n")
+txtIn = input("Type the message you want to cipher or decipher:\n")
 txtOut = ""
 
 def get_key():
