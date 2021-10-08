@@ -2,6 +2,7 @@
 import string
 
 def main():
+    """Get the message, list of symbols and type of operation from the user"""
     message = get_message()
     symbols = get_symbol_list(message)
     cipher_or_decipher(message, symbols)
@@ -21,7 +22,6 @@ def get_key(symbols):
     #loop back to the symbol list if key + letter is too big
     if len(symbols) + key >= len(symbols):
         key = key % len(symbols)
-
     return key
 
 def cipher(plaintext, symbols, key):
@@ -30,7 +30,7 @@ def cipher(plaintext, symbols, key):
     for letter in plaintext:
         old_index = symbols.find(letter)
         new_index = old_index + key
-        ciphertext = ciphertext + symbols[new_index]
+        ciphertext += symbols[new_index]
     return ciphertext
 
 def decipher(plaintext, symbols, key):
@@ -38,8 +38,8 @@ def decipher(plaintext, symbols, key):
     ciphertext = ""
     for letter in plaintext:
         old_index = symbols.find(letter)
-        new_index = old_index - (key)
-        ciphertext = ciphertext + symbols[new_index]
+        new_index = old_index - key
+        ciphertext += symbols[new_index]
     return ciphertext
 
 def brute_force(plaintext, symbols):
@@ -50,7 +50,7 @@ def brute_force(plaintext, symbols):
         for letter in plaintext:
             old_index = symbols.find(letter)
             new_index = old_index - key
-            ciphertext = ciphertext + symbols[new_index]
+            ciphertext += symbols[new_index]
         print(f"Key #{key}: {ciphertext}")
 
 def get_symbol_list(plaintext):
@@ -69,7 +69,7 @@ def get_symbol_list(plaintext):
     print("6. Make your own symbol list")
     select_symbol = input()
     if int(select_symbol) == 6:
-        "Write the symbols you want in your list"
+        print("Write the symbols you want in your list")
         symbol_in = input()
     elif int(select_symbol) <= 5:
         symbol_in = symbols_list[int(select_symbol)-1] + space
@@ -95,7 +95,6 @@ def cipher_or_decipher(message, symbols):
             print(decipher(message, symbols, key))
         else:
             brute_force(message, symbols)
-        
     else:
         print("Choose a valid option.")
         cipher_or_decipher(message, symbols)

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reverse Cipher</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <h1>Reverse a string using JavaScript</h1>
@@ -20,12 +20,6 @@
     <div><p>Result:</p>
         <p id="txtOut"></p>
     </div>
-    <script>
-        function reverseText() {
-            let txtIn = document.getElementById("txtIn").value;
-            document.getElementById("txtOut").innerHTML = txtIn.split("").reverse().join("");
-        }
-        document.getElementById("btnReverse").addEventListener("click", reverseText);
-    </script>
+<script src="script/reverse-cipher.js"></script>
 </body>
 </html>
