@@ -62,16 +62,12 @@ def cipher_or_decipher(message):
         lines = get_lines(message, columns)
         message = get_white_space(message, columns, lines)
         output = cipher(message, columns)
-        print(" " + "_"*len(output))
         print("|" + output + "|")
-        print(" " + "¯"*len(output))
     elif operation == "2":
         columns = get_columns()
         lines = get_lines(message, columns)
         output = decipher(message, columns, lines)
-        print(" " + "_"*len(output))
         print("|" + output + "|")
-        print(" " + "¯"*len(output))
     elif operation == "3":
         brute_force(message)
 

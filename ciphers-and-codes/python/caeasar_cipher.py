@@ -29,9 +29,14 @@ def operation(message, symbols):
 
 def get_symbol_list():
     """Generate the list of symbols for the cipher"""
+    symbols = "1"
     symbol_list = ""
-    for letter in range(32, 126):
-        symbol_list += chr(letter)
+    if symbols == "1":
+        for letter in range(32, 126):
+            symbol_list += chr(letter)
+    elif symbols == "2":
+        for letter in range(65, 90):
+            symbol_list += chr(letter)
     return symbol_list
 
 
