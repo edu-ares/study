@@ -7,7 +7,6 @@ def main():
     output = operation(message, symbols)
     print(output)
 
-
 def operation(message, symbols):
     """get user input for the type of operation"""
     print("\nWhat kind of operation do you want to perform on the message?" +
@@ -23,22 +22,37 @@ def operation(message, symbols):
     else:
         key = get_key(symbols)
         output = cipher(message, symbols, key)
-
     return output
-
 
 def get_symbol_list():
     """Generate the list of symbols for the cipher"""
-    symbols = "1"
+    sym_dict = {"upper": list(range(65, 90)),
+                    "lower": list(range(97, 122)),
+                    "nums": list(range(48, 58)),
+                    "all": list(range(32, 126)),
+                    "others": list(range(32, 48)) + list(range(58, 65)) +
+                    list(range(91, 97)) + list(range(123, 127)),
+                    }
+    symbols = input("Select a list of symbols: \n1. Lowercase only" +
+    "\n2. Uppercase only" + "\n3. Letters(lowercase and uppercase)" +
+    "\n4. Letters and numbers" + "\n5. (default) Letters, numbers and symbols.\n")
     symbol_list = ""
     if symbols == "1":
-        for letter in range(32, 126):
+        for letter in sym_dict["lower"]:
             symbol_list += chr(letter)
     elif symbols == "2":
-        for letter in range(65, 90):
+        for letter in sym_dict["upper"]:
+            symbol_list += chr(letter)
+    elif symbols == "3":
+        for letter in sym_dict["lower"] + sym_dict["upper"]:
+            symbol_list += chr(letter)
+    elif symbols == "4":
+        for letter in sym_dict["lower"] + sym_dict["upper"] + sym_dict["nums"]:
+            symbol_list += chr(letter)
+    else:
+        for letter in sym_dict["all"]:
             symbol_list += chr(letter)
     return symbol_list
-
 
 def get_plaintext(symbols):
     """Get the message and check if the chracters are present in symbols"""
@@ -53,7 +67,6 @@ def get_plaintext(symbols):
                         "Write a message to continue:\n")
     return message
 
-
 def get_key(symbols):
     """Get key to cipher or decipher the message"""
     key = input("\nWhat key do you want to use?\n")
@@ -66,7 +79,6 @@ def get_key(symbols):
         key = input("")
     return int(key)
 
-
 def cipher(plaintext, symbols, key):
     """Cipher message with the provided key"""
     ciphertext = ""
@@ -77,7 +89,6 @@ def cipher(plaintext, symbols, key):
             new_index = new_index - len(symbols)
         ciphertext += symbols[new_index]
     return ciphertext
-
 
 def decipher(plaintext, symbols, key):
     """Decipher message with the provided key"""
@@ -90,7 +101,6 @@ def decipher(plaintext, symbols, key):
         ciphertext += symbols[new_index]
     return ciphertext
 
-
 def brute_force(plaintext, symbols):
     """Brute force all possible keys to decipher the message"""
     ciphertext = ""
@@ -101,7 +111,6 @@ def brute_force(plaintext, symbols):
             new_index = old_index - key
             ciphertext += symbols[new_index]
         print(f"Key #{key}: {ciphertext}")
-
 
 if __name__ == "__main__":
     try:
