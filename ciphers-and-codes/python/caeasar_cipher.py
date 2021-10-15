@@ -8,7 +8,7 @@ def main():
     print(output)
 
 def operation(message, symbols):
-    """get user input for the type of operation"""
+    """Get user input for the type of operation"""
     print("\nWhat kind of operation do you want to perform on the message?" +
           "\nType: \n(1) to cipher the message (default)" +
           "\n(2) to decipher it \n(3) to brute force")
@@ -70,12 +70,9 @@ def get_plaintext(symbols):
 def get_key(symbols):
     """Get key to cipher or decipher the message"""
     key = input("\nWhat key do you want to use?\n")
-    while key.isdigit() is False or key == "" or int(key) >= len(symbols):
-        print("\nThe key can't be empty, not be a number" +
-        " or be bigger than the list of symbols." +
-        "\n\nThe list of symbols has " + str(len(symbols)) +
-        " symbols, a number bigger than that will just loop the list." +
-        " If your number is bigger than that, write a smaller number:")
+    while key.isdigit() is False or key == "":
+        # or int(key) >= len(symbols):
+        print("\nThe key can't be empty or not be a number!")
         key = input("")
     return int(key)
 
@@ -85,8 +82,9 @@ def cipher(plaintext, symbols, key):
     for letter in plaintext:
         index = symbols.find(letter)
         new_index = index + key
+        #checks if new index is too big
         if new_index >= len(symbols):
-            new_index = new_index - len(symbols)
+            new_index %= len(symbols)
         ciphertext += symbols[new_index]
     return ciphertext
 
@@ -95,9 +93,10 @@ def decipher(plaintext, symbols, key):
     ciphertext = ""
     for letter in plaintext:
         index = symbols.find(letter)
+        #check if the key is big
+        if key >= len(symbols):
+            key %= len(symbols)
         new_index = index - key
-        if new_index >= len(symbols):
-            new_index = new_index + len(symbols)
         ciphertext += symbols[new_index]
     return ciphertext
 

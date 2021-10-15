@@ -10,7 +10,7 @@ def main():
         number_of_tests = 100
         symbols = caeasar_cipher.get_symbol_list()
         message_list = get_message(number_of_tests, symbols)
-        key = random.randint(0, len(symbols))
+        key = random.randint(0, 9999)
         for test in range(number_of_tests):
             print("Test " + str(test+1) + ": " + message_list[test][:50])
             encrypted_message = caeasar_cipher.cipher(
